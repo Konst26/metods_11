@@ -9,7 +9,7 @@ public class Main {
         checkYear(2021);
         checkYear(2020);
 
-        printDeviceVersion(1, 2020);
+        printDeviceVersion(1, 2010);
         printDeviceVersion(0, 2030);
         printDeviceVersion(1, 2024);
 
@@ -30,7 +30,7 @@ public class Main {
     public static void printDeviceVersion(int osType, int year) {
         int currentYear = LocalDate.now().getYear();
         var type = osType == 1 ? "Android" : "iOs";
-        var appType = year < currentYear ? "облегченную " : "";
+        var appType = year < currentYear && year < 2015 ? "облегченную " : "";
 
         System.out.println("Установите " + appType + "версию для системы " + type);
         if (year > currentYear) {
