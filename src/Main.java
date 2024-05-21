@@ -1,31 +1,53 @@
+import java.sql.SQLOutput;
+import java.time.Instant;
+import java.time.LocalDate;
 public class Main {
-    public static void printSeparator () {
-        System.out.println("++++++");
-        System.out.println("------");
-    }
-    public static void printIssues(int issueCount) {
-        System.out.println(issueCount);
-    }
-
-    public static int sum(int [] numbers) {
-        int sum = 0;
-        for (int i = 0; i < numbers.length; i++) {
-            sum = sum + numbers[i];
-            
-        }
-        return sum;
-    }
     public static void main(String[] args) {
-        int[] issuesByMonths = {4, 6, 7, 9, 2, 5, 12, 3, 7, 10, 6, 7, 1, 8};
-        printSeparator();
-                for (int i = 0; i < issuesByMonths.length; i++) {
-            printIssues(issuesByMonths[i]);
-            if ((i + 1) % 3 == 0) {
-                printSeparator();
-            }
+        checkYear(2024);
+        checkYear(2023);
+        checkYear(2022);
+        checkYear(2021);
+        checkYear(2020);
+
+        printDeviceVersion(1, 2010);
+        printDeviceVersion(0, 2030);
+        printDeviceVersion(1, 2024);
+
+        int days = calculateDistance(90);
+        if (days > 0) {
+            System.out.println("Количество дней " + days);
+        } else {
+            System.out.println("Доставки нет");
         }
-        printSeparator();
-                int total = sum(issuesByMonths);
-                printIssues(total);
+    }
+    public static void checkYear(int year) {
+        if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+            System.out.println(year + " год - високосный год");
+        } else {
+            System.out.println(year + " год - не високосный год");
         }
+    }
+    public static void printDeviceVersion(int osType, int year) {
+        int currentYear = LocalDate.now().getYear();
+        var type = osType == 1 ? "Android" : "iOs";
+        var appType = year < currentYear && year < 2015 ? "облегченную " : "";
+
+        System.out.println("Установите " + appType + "версию для системы " + type);
+        if (year > currentYear) {
+            System.out.println("Ошибка");
+        }
+    }
+    public static int calculateDistance(int distance) {
+        if (distance > 100) {
+            return -1;
+        }
+        int days = 1;
+        if (distance > 20) {
+            days++;
+        }
+        if (distance > 60) {
+            days++;
+        }
+        return days;
+    }
 }
