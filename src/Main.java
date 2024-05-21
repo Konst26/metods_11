@@ -13,7 +13,7 @@ public class Main {
         printDeviceVersion(0, 2030);
         printDeviceVersion(1, 2024);
 
-        int days = calculateDistance(111);
+        int days = calculateDistance(90);
         if (days > 0) {
             System.out.println("Количество дней " + days);
         } else {
